@@ -23,3 +23,8 @@ NUnit,NSubstitute,MOQ and Shouldly being used to implement the unit testing for 
 
 Reading Value lesser than zero or greater than 99999(NNNNN) is considered as Invalid. Reading value of zero is assumed as valid meter reading value for this purpose of exercise
 
+**Note:**
+
+Please refer to the totalSuccessfulReadings and totalFailedReadings property available in the response returned for this meter-reading-uploads API.
+
+![image](https://user-images.githubusercontent.com/36460347/146676608-7be306e1-3dba-4c82-b3a6-24c330f4b284.png)
