@@ -24,19 +24,16 @@ namespace Ensek.MeterReading.Api.Data.Context
         }
         public void SeedAccountDetails()
         {
-            _db.Database.EnsureCreated();
-            if (!_db.Account.Any())
-            {
-                const string resourceName = "Ensek.MeterReading.Api.Data.Seeders.Test_Accounts.csv";
-                using var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(resourceName);
-                if (stream == null) throw new ConfigurationException("Test_Accounts.csv file not configured properly");
-                using var reader = new StreamReader(stream, Encoding.UTF8);
-                var csvReader = new CsvReader(reader,CultureInfo.InvariantCulture);
-                var accounts = csvReader.GetRecords<Account>().ToList();
-                _db.Account.AddRange(accounts);
-                _db.SaveChanges();
-                
-            }
+            if (_db.Account.Any()) return;
+            
+            const string resourceName = "Ensek.MeterReading.Api.Data.Seeders.Test_Accounts.csv";
+            using var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(resourceName);
+            if (stream == null) throw new ConfigurationException("Test_Accounts.csv file not configured properly");
+            using var reader = new StreamReader(stream, Encoding.UTF8);
+            var csvReader = new CsvReader(reader,CultureInfo.InvariantCulture);
+            var accounts = csvReader.GetRecords<Account>().ToList();
+            _db.Account.AddRange(accounts);
+            _db.SaveChanges();
         }
     }
 }
